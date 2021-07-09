@@ -1,10 +1,12 @@
 {
   "name": "test-todomvc-using-keyboard",
   "version": "1.0.0",
-  "description": "",
+  "description": "Testing TodoMVC in Cypress using only the keyboard input",
   "main": "index.js",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "cy:open": "cypress open",
+    "cy:run": "cypress run"
   },
   "keywords": [],
   "author": "",
