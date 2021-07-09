@@ -1,0 +1,17 @@
+{
+  "name": "test-todomvc-using-keyboard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^7.7.0",
+    "cypress-real-events": "^1.5.0",
+    "prettier": "^2.3.2"
+  }
+}
