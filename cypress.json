@@ -2,5 +2,5 @@
   "fixturesFolder": false,
   "supportFile": false,
   "pluginsFile": false,
-  "baseUrl": "https://dylanb.github.io/todomvc/"
+  "baseUrl": "http://localhost:5000"
 }

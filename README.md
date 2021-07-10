@@ -8,6 +8,8 @@ Let's test if TodoMVC application is accessible and can be used with keyboard on
 
 See the test in [cypress/integration/spec.js](./cypress/integration/spec.js)
 
+Testing the site [dylanb.github.io/todomvc](https://dylanb.github.io/todomvc/) with the source code available in [dylanb/todomvc](https://github.com/dylanb/todomvc) repo
+
 [ci image]: https://github.com/bahmutov/test-todomvc-using-keyboard/workflows/ci/badge.svg?branch=main
 [ci url]: https://github.com/bahmutov/test-todomvc-using-keyboard/actions
 [badges image]: https://github.com/bahmutov/test-todomvc-using-keyboard/workflows/badges/badge.svg?branch=main
