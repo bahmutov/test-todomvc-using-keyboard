@@ -104,7 +104,7 @@ it('works using the keyboard only', () => {
   cy.focused()
     .should('have.text', 'Completed')
     .wait(1000, noLog)
-    .realPress('Space')
+    .realPress('Enter')
 
   // confirm the "Completed" view shows
   cy.log('**completed items view**')
@@ -118,7 +118,7 @@ it('works using the keyboard only', () => {
   cy.focused()
     .should('have.text', 'Active')
     .wait(1000, noLog)
-    .realPress('Space')
+    .realPress('Enter')
   cy.hash().should('equal', '#/active')
   cy.get('#todo-list li').should('have.length', 1)
   // note: after clicking, the filter is highlighted
