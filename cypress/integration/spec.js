@@ -8,8 +8,9 @@ Cypress.Commands.overwrite('click', () => {
   throw new Error('Cannot use click command during keyboard-only test')
 })
 
+const noLog = { log: false }
+
 it('works using the keyboard only', () => {
-  const noLog = { log: false }
   cy.visit('/')
   cy.contains('What needs to be done?')
     .should('be.visible')
@@ -127,5 +128,41 @@ it('works using the keyboard only', () => {
   cy.contains('li[role=presentation] a', 'Active')
     .should('have.class', 'selected')
     .and('have.attr', 'aria-checked', 'true')
+    .wait(1000, noLog)
+})
+
+it('cancels edit on escape', () => {
+  cy.visit('/')
+  cy.contains('What needs to be done?')
+    .should('be.visible')
+    // for the purpose of the blog post
+    // slow down the commands by inserting waits
+    .wait(1000, noLog)
+
+  // the first tab should bring us to the input element
+  // but first we must be in the application's iframe
+  cy.get('body').realClick().realPress('Tab')
+  cy.focused()
+    .should('have.id', 'new-todo')
+    .type('first{enter}')
+    .wait(1000, noLog)
+  cy.realPress('Tab')
+    .wait(1000, noLog)
+    .realPress('Tab')
+    .wait(1000, noLog)
+    .realPress('Tab')
+    .wait(1000, noLog)
+    // let's start editing
+    .realPress('Enter')
+    .wait(1000, noLog)
+  cy.focused().should('have.value', 'first').type(' todo')
+  cy.focused().should('have.value', 'first todo').wait(1000, noLog)
+  // now Escape, use cy.type because cypress-real-events does not implement Escape yet
+  cy.focused().type('{esc}')
+
+  // the todo item is reverted to its original text
+  // which we check using the regular expression
+  cy.contains('#todo-list li .todoitem', /^first$/)
+    .should('be.visible')
     .wait(1000, noLog)
 })

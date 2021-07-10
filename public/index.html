@@ -28,7 +28,7 @@
             <li ng-repeat="todo in todos | filter:statusFilter track by $index" ng-class="{completed: todo.completed, editing: todo == editedTodo}" todo-kbd>
               <div class="view">
                 <input class="toggle" type="checkbox" ng-model="todo.completed" ng-change="toggleCompleted(todo)" aria-labelledby="{{'todo-' + $index}}" title="Check to mark as completed">
-                <a role="button" id="{{'todo-' + $index}}" class="todoitem" aria-describedby="clicktoedit" ng-click="editTodo(todo)" todo-focus="mustFocus(todo)">{{todo.title}} <span class="visuallyhidden">{{todo.completed ? 'Completed' : ''}}</span></a>
+                <a role="button" id="{{'todo-' + $index}}" class="todoitem" aria-describedby="clicktoedit" ng-click="editTodo(todo)" todo-focus="mustFocus(todo)">{{todo.title}}<span class="visuallyhidden">{{todo.completed ? 'Completed' : ''}}</span></a>
                 <button class="destroy" ng-click="removeTodo(todo)" aria-label="Delete" aria-describedby="{{'todo-' + $index}}"></button>
               </div>
               <form ng-submit="saveEdits(todo)">
