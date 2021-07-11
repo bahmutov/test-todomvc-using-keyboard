@@ -6,6 +6,8 @@ jobs:
     steps:
       - name: Check out code 🛎
         uses: actions/checkout@v2
+
+      # https://github.com/cypress-io/github-action
       - name: Cypress tests 🧪
         uses: cypress-io/github-action@v2
         with:
