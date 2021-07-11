@@ -3,6 +3,7 @@
 /// <reference types="cypress-real-events" />
 
 import 'cypress-real-events/support'
+import todos from './todos.json'
 
 Cypress.Commands.overwrite('click', () => {
   throw new Error('Cannot use click command during keyboard-only test')
@@ -165,4 +166,69 @@ it('cancels edit on escape', () => {
   cy.contains('#todo-list li .todoitem', /^first$/)
     .should('be.visible')
     .wait(1000, noLog)
+})
+
+it('completes all todos', () => {
+  cy.visit('/', {
+    onBeforeLoad(win) {
+      const STORAGE_ID = 'todos-angularjs'
+      win.localStorage.setItem(STORAGE_ID, JSON.stringify(todos))
+    },
+  })
+  cy.get('#todo-list li').should('have.length', 3).wait(1000, noLog)
+  // the focus should be set on the "All" filter link
+  cy.focused()
+    .should('have.text', 'All')
+    .realPress('Tab') // at the "Active" link
+    .wait(500, noLog)
+    .realPress('Tab') // at the "Completed" link
+    .wait(500, noLog)
+    .realPress('Tab') // at the "Clear completed" button
+    .wait(500, noLog)
+  cy.focused()
+    .should('have.id', 'clear-completed')
+    .and('have.text', 'Clear completed (2)')
+    .wait(1000, noLog)
+    .realPress('Space')
+
+  cy.log('**only incomplete items remain**')
+  cy.get('#todo-list li').should('have.length', 1)
+  cy.contains('li', 'write a11y tests').should('be.visible').wait(1000, noLog)
+})
+
+it('toggles all todos', () => {
+  cy.visit('/', {
+    onBeforeLoad(win) {
+      const STORAGE_ID = 'todos-angularjs'
+      win.localStorage.setItem(STORAGE_ID, JSON.stringify(todos))
+    },
+  })
+  cy.get('#todo-list li').should('have.length', 3)
+  cy.get('#todo-list li.completed').should('have.length', 2)
+  cy.contains('#todo-count strong', '1').should('be.visible').wait(1000, noLog)
+
+  cy.log('**toggle all**')
+  // the focus should be set on the "All" filter link
+  // we need to navigate to the "#toggle-all" element
+  // through each todo item with text, complete, and delete elements.
+  cy.focused().should('have.text', 'All')
+  Cypress._.times(10, () => cy.realPress(['Shift', 'Tab']).wait(250, noLog))
+  // confirm we are at the right element
+  cy.focused()
+    .should('have.id', 'toggle-all')
+    .and('have.attr', 'aria-label', 'Mark all todos as completed')
+    .wait(1000, noLog)
+    .realPress('Space')
+  cy.get('#todo-list li.completed').should('have.length', 3)
+  // all items are now complete
+  cy.contains('#todo-count strong', '0').should('be.visible')
+  cy.contains('#clear-completed', 'Clear completed (3)')
+    .should('be.visible')
+    .wait(1000, noLog)
+  cy.log('**toggle all**')
+  // if we press the "toggle-all" again, all items will become incomplete
+  cy.realPress('Space')
+  cy.get('#todo-list li.completed').should('have.length', 0)
+  cy.contains('#todo-count strong', '3').should('be.visible')
+  cy.contains('#clear-completed').should('not.exist').wait(1000, noLog)
 })
