@@ -6,8 +6,16 @@ jobs:
     steps:
       - name: Check out code 🛎
         uses: actions/checkout@v2
-      - name: Cypress tests
+      - name: Cypress tests 🧪
         uses: cypress-io/github-action@v2
         with:
           start: npm start
           wait-on: 'http://localhost:5000'
+
+      # if the tests passed, public the application
+      - name: Publish site 🌐
+        if: github.ref == 'refs/heads/main'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
