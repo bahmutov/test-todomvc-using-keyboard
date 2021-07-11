@@ -14,7 +14,8 @@ jobs:
           start: npm start
           wait-on: 'http://localhost:5000'
 
-      # if the tests passed, public the application
+      # if the tests passed, publish the application
+      # https://github.com/peaceiris/actions-gh-pages
       - name: Publish site 🌐
         if: github.ref == 'refs/heads/main'
         uses: peaceiris/actions-gh-pages@v3
