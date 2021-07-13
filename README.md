@@ -2,6 +2,8 @@
 [![ci status][ci image]][ci url] [![badges status][badges image]][badges url] [![renovate-app badge][renovate-badge]][renovate-app]
 ![cypress version](https://img.shields.io/badge/cypress-7.7.0-brightgreen) ![cypress-real-events version](https://img.shields.io/badge/cypress--real--events-1.5.0-brightgreen)
 
+Try the app at [https://glebbahmutov.com/test-todomvc-using-keyboard/](https://glebbahmutov.com/test-todomvc-using-keyboard/)
+
 Let's test if TodoMVC application is accessible and can be used with keyboard only.
 
 ![The running tests](./images/keyboard-only.gif)
