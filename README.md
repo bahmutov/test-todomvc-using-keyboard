@@ -1,6 +1,6 @@
 # test-todomvc-using-keyboard
 [![ci status][ci image]][ci url] [![badges status][badges image]][badges url] [![renovate-app badge][renovate-badge]][renovate-app]
-![cypress version](https://img.shields.io/badge/cypress-8.1.0-brightgreen) ![cypress-real-events version](https://img.shields.io/badge/cypress--real--events-1.5.0-brightgreen)
+![cypress version](https://img.shields.io/badge/cypress-8.2.0-brightgreen) ![cypress-real-events version](https://img.shields.io/badge/cypress--real--events-1.5.0-brightgreen)
 
 Try the app at [https://glebbahmutov.com/test-todomvc-using-keyboard/](https://glebbahmutov.com/test-todomvc-using-keyboard/)
 
