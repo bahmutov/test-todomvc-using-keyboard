@@ -195,7 +195,7 @@ it('completes all todos', () => {
     .realPress('Space')
 
   cy.log('**only incomplete items remain**')
-  cy.get('#todo-list li').should('have.length', 1)
+  cy.get('#todo-list li').should('have.length', 2)
   cy.contains('li', 'write a11y tests').should('be.visible').wait(1000, noLog)
 })
 
