@@ -1,0 +1,18 @@
+version: 2.1
+orbs:
+  # https://github.com/cypress-io/circleci-orb
+  cypress: cypress-io/cypress@1
+workflows:
+  build:
+    jobs:
+      - cypress/run:
+          start: npm start
+          wait-on: 'http://localhost:5000'
+          no-workspace: true
+          # save the standard Cypress screenshots saved on failure
+          store_artifacts: true
+          post-steps:
+            # if any of the tests fail, saves the page at that moment
+            # https://github.com/bahmutov/cyclope
+            - store_artifacts:
+                path: cypress/failed
