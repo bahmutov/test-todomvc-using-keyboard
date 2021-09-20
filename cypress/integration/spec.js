@@ -4,6 +4,9 @@
 
 import 'cypress-real-events/support'
 import todos from './todos.json'
+import { savePageIfTestFailed } from 'cyclope'
+
+afterEach(savePageIfTestFailed)
 
 Cypress.Commands.overwrite('click', () => {
   throw new Error('Cannot use click command during keyboard-only test')
@@ -192,7 +195,8 @@ it('completes all todos', () => {
     .realPress('Space')
 
   cy.log('**only incomplete items remain**')
-  cy.get('#todo-list li').should('have.length', 1)
+  // make the test fail on purpose
+  cy.get('#todo-list li').should('have.length', 2)
   cy.contains('li', 'write a11y tests').should('be.visible').wait(1000, noLog)
 })
 
