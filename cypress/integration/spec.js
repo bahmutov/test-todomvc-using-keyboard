@@ -168,14 +168,17 @@ it('cancels edit on escape', () => {
     .wait(1000, noLog)
 })
 
-it('completes all todos', () => {
+it.only('completes all todos', () => {
   cy.visit('/', {
     onBeforeLoad(win) {
       const STORAGE_ID = 'todos-angularjs'
       win.localStorage.setItem(STORAGE_ID, JSON.stringify(todos))
     },
   })
-  cy.get('#todo-list li').should('have.length', 3).wait(1000, noLog)
+  cy.get('#todo-list li')
+    // make the test fail on purpose
+    .should('have.length', 4)
+    .wait(1000, noLog)
   // the focus should be set on the "All" filter link
   cy.focused()
     .should('have.text', 'All')
