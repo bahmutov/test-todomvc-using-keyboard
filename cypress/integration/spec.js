@@ -4,6 +4,9 @@
 
 import 'cypress-real-events/support'
 import todos from './todos.json'
+import { savePageIfTestFailed } from 'cyclope'
+
+afterEach(savePageIfTestFailed)
 
 Cypress.Commands.overwrite('click', () => {
   throw new Error('Cannot use click command during keyboard-only test')

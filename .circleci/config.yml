@@ -11,3 +11,8 @@ workflows:
           no-workspace: true
           # save the standard Cypress screenshots saved on failure
           store_artifacts: true
+          post-steps:
+            # if any of the tests fail, saves the page at that moment
+            # https://github.com/bahmutov/cyclope
+            - store_artifacts:
+                path: cypress/failed
