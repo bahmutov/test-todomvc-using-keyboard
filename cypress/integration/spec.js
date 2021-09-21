@@ -4,6 +4,9 @@
 
 import 'cypress-real-events/support'
 import todos from './todos.json'
+import { savePageIfTestFailed } from 'cyclope'
+
+afterEach(savePageIfTestFailed)
 
 Cypress.Commands.overwrite('click', () => {
   throw new Error('Cannot use click command during keyboard-only test')
@@ -175,7 +178,11 @@ it('completes all todos', () => {
       win.localStorage.setItem(STORAGE_ID, JSON.stringify(todos))
     },
   })
-  cy.get('#todo-list li').should('have.length', 3).wait(1000, noLog)
+  cy.get('#todo-list li')
+    // make the test fail on purpose
+    .should('have.length', 4)
+    .wait(1000, noLog)
+
   // the focus should be set on the "All" filter link
   cy.focused()
     .should('have.text', 'All')
