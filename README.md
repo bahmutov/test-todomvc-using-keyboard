@@ -1,6 +1,6 @@
 # test-todomvc-using-keyboard
 [![ci status][ci image]][ci url] [![badges status][badges image]][badges url] [![renovate-app badge][renovate-badge]][renovate-app]
-![cypress version](https://img.shields.io/badge/cypress-9.1.0-brightgreen) ![cypress-real-events version](https://img.shields.io/badge/cypress--real--events-1.5.0-brightgreen) [![CircleCI](https://circleci.com/gh/bahmutov/test-todomvc-using-keyboard/tree/main.svg?style=svg)](https://circleci.com/gh/bahmutov/test-todomvc-using-keyboard/tree/main)
+![cypress version](https://img.shields.io/badge/cypress-9.1.1-brightgreen) ![cypress-real-events version](https://img.shields.io/badge/cypress--real--events-1.5.0-brightgreen) [![CircleCI](https://circleci.com/gh/bahmutov/test-todomvc-using-keyboard/tree/main.svg?style=svg)](https://circleci.com/gh/bahmutov/test-todomvc-using-keyboard/tree/main)
 
 Read the blog post [Testing A Web App Using The Keyboard Only](https://glebbahmutov.com/blog/test-app-using-the-keyboard/).
 
