@@ -9,7 +9,7 @@ jobs:
 
       # https://github.com/cypress-io/github-action
       - name: Cypress tests 🧪
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v7.1.9
         with:
           start: npm start
           wait-on: 'http://localhost:5000'
